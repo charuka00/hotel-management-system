@@ -1,19 +1,48 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Import Pages
+import Home from './pages/Home';
+import Rooms from './pages/Rooms';
+import RoomDetails from './pages/RoomDetails';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import AdminDashboard from './pages/AdminDashboard';
+import Navbar from './components/Navbar';
+import UserProfile from './pages/UserProfile';
+
+// Placeholder Component (Optional, mostly used during dev)
+const Placeholder = ({ title }) => (
+  <div className="min-h-screen flex items-center justify-center bg-secondary text-3xl font-bold text-primary">
+    {title} Page Coming Soon
+  </div>
+);
+
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-primary mb-4">
-          Hotel Management System
-        </h1>
-        <p className="text-gray-600">
-          Setup successful! Tailwind is working.
-        </p>
-        <button className="mt-4 px-4 py-2 bg-primary text-white rounded hover:bg-blue-700">
-          Get Started
-        </button>
+    <BrowserRouter>
+      {/* Fixed Navbar (stays at top) */}
+      <Navbar />
+      
+      {/* WRAPPER DIV: 
+         - pt-24 pushes content down so it's not hidden behind the Navbar.
+         - min-h-screen ensures the background color covers the whole page.
+      */}
+      <div className="pt-24 min-h-screen bg-gray-100">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/rooms" element={<Rooms />} />
+          <Route path="/room/:id" element={<RoomDetails />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/profile" element={<UserProfile />} />
+        </Routes>
       </div>
-    </div>
-  )
+      
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
