@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import Navbar from './components/Navbar';
 import UserProfile from './pages/UserProfile';
+import Footer from './components/Footer';
 
 // Placeholder Component (Optional, mostly used during dev)
 const Placeholder = ({ title }) => (
@@ -23,6 +24,7 @@ function App() {
     <BrowserRouter>
       {/* Fixed Navbar (stays at top) */}
       <Navbar />
+      
       
       {/* WRAPPER DIV: 
          - pt-24 pushes content down so it's not hidden behind the Navbar.
@@ -41,6 +43,7 @@ function App() {
         </Routes>
       </div>
       
+      <Footer />
     </BrowserRouter>
   );
 }

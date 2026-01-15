@@ -145,41 +145,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* --- FOOTER --- */}
-      <footer className="bg-gray-900 text-white py-12 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h4 className="text-xl font-bold mb-4">HotelManager</h4>
-            <p className="text-gray-400 text-sm">Experience luxury and comfort in the heart of the city. Your perfect stay awaits.</p>
-          </div>
-          <div>
-            <h5 className="font-bold mb-4 text-gray-200">About Us</h5>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li><a href="#" className="hover:text-white">Our Story</a></li>
-              <li><a href="#" className="hover:text-white">Careers</a></li>
-              <li><a href="#" className="hover:text-white">Sustainability</a></li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="font-bold mb-4 text-gray-200">Support</h5>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li><a href="#" className="hover:text-white">Customer Service</a></li>
-              <li><a href="#" className="hover:text-white">FAQs</a></li>
-              <li><a href="#" className="hover:text-white">Terms of Service</a></li>
-            </ul>
-          </div>
-          <div>
-            <h5 className="font-bold mb-4 text-gray-200">Follow Us</h5>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white text-xl"><i className="fab fa-facebook"></i> FB</a>
-              <a href="#" className="text-gray-400 hover:text-white text-xl"><i className="fab fa-instagram"></i> IG</a>
-            </div>
-          </div>
-        </div>
-        <div className="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-gray-800 text-center text-gray-500 text-sm">
-          &copy; 2024 HotelManager System. All rights reserved.
-        </div>
-      </footer>
+
 
     </div>
   );
