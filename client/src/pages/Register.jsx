@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import beachImg from '../assets/beach01.webp'; // <--- 1. Import the image
 
 const Register = () => {
-  const navigate = useNavigate(); // Hook to redirect user after success
+  const navigate = useNavigate(); 
 
   // 1. State to hold form data
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const Register = () => {
 
   // 3. Handle Form Submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // <--- STOP PAGE RELOAD
+    e.preventDefault(); 
 
     try {
       // Connect to Backend (Port 5001)
@@ -34,69 +35,79 @@ const Register = () => {
 
       console.log(res.data);
       alert('Registration Successful!');
-      navigate('/login'); // Redirect to login page
+      navigate('/login'); 
 
     } catch (err) {
       console.error(err);
-      // Show error message from backend or a default message
       alert(err.response?.data?.msg || 'Registration failed');
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center text-primary mb-6">Create an Account</h2>
+    // Updated Container: relative position for background
+    <div className="relative min-h-screen flex items-center justify-center px-4">
+      
+      {/* --- BACKGROUND IMAGE SECTION --- */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center z-0"
+        style={{ backgroundImage: `url(${beachImg})` }}
+      >
+        {/* Transparent Navy Overlay */}
+        <div className="absolute inset-0 bg-blue-100/10"></div>
+      </div>
+
+      {/* --- REGISTER CARD (z-10 ensures it floats on top) --- */}
+      <div className="relative z-10 bg-white p-10 rounded-xl shadow-2xl w-full max-w-lg">
+        <h2 className="text-4xl font-bold text-center text-blue-900 mb-8">Create an Account</h2>
         
-        {/* ADD onSubmit HERE */}
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Full Name</label>
+          <div className="mb-6">
+            <label className="block text-gray-700 font-medium mb-2 text-lg">Full Name</label>
             <input 
               type="text" 
-              name="name"  // Name attribute is required for handleChange
-              value={name} // Bind value to state
-              onChange={handleChange} // Update state on typing
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              name="name" 
+              value={name} 
+              onChange={handleChange} 
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 text-lg"
               placeholder="John Doe" 
               required
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-gray-700 font-medium mb-2">Email</label>
+          <div className="mb-6">
+            <label className="block text-gray-700 font-medium mb-2 text-lg">Email</label>
             <input 
               type="email" 
               name="email"
               value={email}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 text-lg"
               placeholder="john@example.com" 
               required
             />
           </div>
           
-          <div className="mb-6">
-            <label className="block text-gray-700 font-medium mb-2">Password</label>
+          <div className="mb-8">
+            <label className="block text-gray-700 font-medium mb-2 text-lg">Password</label>
             <input 
               type="password" 
               name="password"
               value={password}
               onChange={handleChange}
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 text-lg"
               placeholder="********" 
               required
             />
           </div>
           
-          <button type="submit" className="w-full bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition">
+          <button type="submit" className="w-full bg-blue-900 text-white font-bold py-3.5 rounded-lg hover:bg-blue-800 transition shadow-md text-lg">
             Register
           </button>
         </form>
         
-        <p className="mt-4 text-center text-gray-600">
+        <p className="mt-6 text-center text-gray-600 text-lg">
           Already have an account? 
-          <Link to="/login" className="text-blue-600 font-bold ml-1 hover:underline">Login</Link>
+          <Link to="/login" className="text-blue-900 font-bold ml-1 hover:underline">Login</Link>
         </p>
       </div>
     </div>
