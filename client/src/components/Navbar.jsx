@@ -2,66 +2,73 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // Forces navbar to update when route changes
+  const location = useLocation(); 
 
-  // Check Auth Status (Access LocalStorage)
+  // Check Auth Status
   const token = localStorage.getItem('token');
   const role = localStorage.getItem('role');
 
-  // Handle Logout
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
-    navigate('/login'); // Redirect to login page
+    navigate('/login'); 
   };
 
   return (
-    // UPDATED: Added 'fixed top-0 left-0 w-full z-50' to make it stick
-    <nav className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+    // Navbar Container
+    <nav className="fixed top-0 left-0 w-full bg-primary shadow-lg z-50 transition-all duration-300">
+      
+      {/* UPDATED LINE BELOW: 
+         - Removed 'container' (which restricts width).
+         - Added 'max-w-[95%] mx-auto' to let it spread wider, moving logo left.
+      */}
+      <div className="max-w-[95%] mx-auto px-4 md:px-6 py-7 flex justify-between items-center">
+        
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-primary">
-          Hotel<span className="text-gray-700">Manager</span>
+        <Link to="/" className="text-3xl font-bold text-white tracking-wide">
+          Ocean <span className="text-blue-300">Pearl Resort</span>
         </Link>
 
-        {/* Desktop Menu - Always Visible Links */}
-        <div className="hidden md:flex space-x-8 text-gray-600 font-medium">
-          <Link to="/" className="hover:text-primary transition">Home</Link>
-          <Link to="/rooms" className="hover:text-primary transition">Rooms</Link>
+        {/* Desktop Menu */}
+        <div className="hidden md:flex space-x-8 text-white font-medium">
+          <Link to="/" className="hover:text-blue-300 transition">Home</Link>
+          <Link to="/rooms" className="hover:text-blue-300 transition">Rooms</Link>
           
-          {/* Conditional Link: Admin Dashboard */}
+          {/* Admin Dashboard Link */}
           {token && role === 'admin' && (
-            <Link to="/admin-dashboard" className="text-primary font-bold hover:underline">
+            <Link to="/admin-dashboard" className="text-blue-300 font-bold hover:text-white border-b-2 border-blue-300 pb-1">
               Dashboard
             </Link>
           )}
 
-          {/* Conditional Link: User Profile */}
+          {/* User Profile Link */}
           {token && role === 'user' && (
-            <Link to="/profile" className="text-primary font-bold hover:underline">
+            <Link to="/profile" className="text-blue-300 font-bold hover:text-white">
               My Profile
             </Link>
           )}
         </div>
 
-        {/* Auth Buttons Section */}
+        {/* Auth Buttons */}
         <div className="flex space-x-4">
           
-          {/* IF NOT LOGGED IN: Show Login & Register */}
           {!token ? (
             <>
-              <Link to="/login" className="text-gray-600 hover:text-primary font-medium px-4 py-2">
+              {/* Login */}
+              <Link to="/login" className="text-white hover:text-blue-300 font-medium px-4 py-2 transition">
                 Login
               </Link>
-              <Link to="/register" className="bg-primary text-white px-5 py-2 rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-500/30">
+              
+              {/* Register */}
+              <Link to="/register" className="bg-white text-primary font-bold px-5 py-2 rounded-full hover:bg-gray-100 transition shadow-lg">
                 Register
               </Link>
             </>
           ) : (
-            // IF LOGGED IN: Show Logout Button
+            // Logout
             <button 
               onClick={handleLogout} 
-              className="border border-red-500 text-red-500 px-5 py-2 rounded-full hover:bg-red-50 transition font-medium"
+              className="border border-red-400 text-red-400 px-5 py-2 rounded-full hover:bg-red-500 hover:text-white transition font-medium"
             >
               Logout
             </button>
