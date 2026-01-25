@@ -1,10 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
 
 const RoomDetails = () => {
-  const { id } = useParams(); // Gets the ID from the URL (e.g., /room/1)
+  const { id } = useParams(); // Gets the ID from the URL
 
-  // Mock Data (We will fetch this from the backend later)
-  // In a real app, we would search the database for the room with this ID
+  // Mock Data
   const room = {
     _id: id,
     name: "Deluxe Ocean View",
@@ -61,10 +60,18 @@ const RoomDetails = () => {
 
           {/* Action Buttons */}
           <div className="mt-10 flex gap-4">
-            <button className="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition shadow-lg">
+            
+            {/* --- UPDATE STARTS HERE --- */}
+            {/* Replaced <button> with <Link> */}
+            <Link 
+              to={`/book/${id}`} 
+              className="bg-primary text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition shadow-lg text-center flex items-center justify-center"
+            >
               Book Now
-            </button>
-            <Link to="/rooms" className="px-8 py-3 border border-gray-300 rounded-lg font-bold text-gray-600 hover:bg-gray-50 transition">
+            </Link>
+            {/* --- UPDATE ENDS HERE --- */}
+
+            <Link to="/rooms" className="px-8 py-3 border border-gray-300 rounded-lg font-bold text-gray-600 hover:bg-gray-50 transition text-center flex items-center justify-center">
               Back to Rooms
             </Link>
           </div>
