@@ -11,6 +11,8 @@ import AdminDashboard from './pages/AdminDashboard';
 import Navbar from './components/Navbar';
 import UserProfile from './pages/UserProfile';
 import Footer from './components/Footer';
+import BookingPage from './pages/BookingPage';
+import PaymentPage from './pages/PaymentPage';
 
 // Placeholder Component (Optional, mostly used during dev)
 const Placeholder = ({ title }) => (
@@ -40,6 +42,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/profile" element={<UserProfile />} />
+          <Route path="/book/:id" element={<BookingPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
         </Routes>
       </div>
       
